@@ -11,8 +11,12 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
-import Settings from "./pages/Settings";
-import DeviceManager from "./pages/DeviceManager";
+import ImageToText from "./pages/ImageToText";
+import AudioToText from "./pages/AudioToText";
+import MyTranscripts from "./pages/MyTranscripts";
+import Profile from "./pages/Profile";
+import UploadHistory from "./pages/UploadHistory";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -26,11 +30,16 @@ const App = () => (
           <Routes>
             <Route path="/" element={<RootLayout />}>
               <Route index element={<Landing />} />
-              <Route path="dashboard" element={<Dashboard />} />
               <Route path="login" element={<Login />} />
               <Route path="register" element={<Register />} />
-              <Route path="settings" element={<Settings />} />
-              <Route path="devices" element={<DeviceManager />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="image-to-text" element={<ImageToText />} />
+                <Route path="audio-to-text" element={<AudioToText />} />
+                <Route path="transcripts" element={<MyTranscripts />} />
+                <Route path="upload-history" element={<UploadHistory />} />
+                <Route path="profile" element={<Profile />} />
+              </Route>
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
